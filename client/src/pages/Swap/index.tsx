@@ -5,7 +5,12 @@ import { useQuery } from '@tanstack/react-query';
 import BigNumber from 'bignumber.js';
 import { Button, Container } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import { contractAddress, newTokenIdentifier, token } from 'config';
+import {
+  contractAddress,
+  microservice,
+  newTokenIdentifier,
+  token
+} from 'config';
 import styles from './styles.module.scss';
 
 function Sell() {
@@ -14,18 +19,18 @@ function Sell() {
   const [showError, setShowError] = useState(false);
 
   const oldTokens = useQuery(['balance'], () =>
-    fetch(`http://localhost:1212/user/balance/${address}/${token}/2`).then(
-      (res) => res.json()
+    fetch(`${microservice}/user/balance/${address}/${token}/2`).then((res) =>
+      res.json()
     )
   );
 
   const newToken = useQuery(['newToken'], () =>
     fetch(
-      `http://localhost:1212/user/balance/${address}/${newTokenIdentifier}/18`
+      `${microservice}/user/balance/${address}/${newTokenIdentifier}/18`
     ).then((res) => res.json())
   );
   const supply = useQuery(['supply'], () =>
-    fetch('http://localhost:1212/swap/supply').then((res) => res.json())
+    fetch(`${microservice}/swap/supply`).then((res) => res.json())
   );
 
   const numHex = (s: number) => {
