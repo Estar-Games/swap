@@ -5,13 +5,29 @@
 }
 .inputs {
   width: 70%;
-  background-color: #191b42;
-  height: 400px;
+  background: linear-gradient(#001d3d, #002042);
+  min-height: 430px;
   padding: 30px;
+  border-radius: 14px;
+  -webkit-box-shadow: 2px 5px 16px 0px #0b325e,
+    5px 5px 15px 5px rgba(0, 0, 0, 0) !important;
+  box-shadow: 2px 5px 16px 0px #0b325e, 5px 5px 15px 5px rgba(0, 0, 0, 0) !important;
+}
+.labelText,
+.label {
+  font-size: 20px;
+  color: #ffd60a;
 }
 .label {
-  color: #ffd16f;
-  margin-bottom: 20px;
+  color: #ffff;
+  font-weight: 700;
+}
+.labelText {
+  margin-bottom: 5px;
+}
+.value {
+  color: #5cb0ff;
+  font-size: 20px;
 }
 .buttonSell {
   margin-top: 30px;
@@ -21,6 +37,23 @@
 .buttonSell:hover {
   width: 105px;
   height: 37px;
+}
+.text-light {
+  margin-top: 20px;
+}
+.textError {
+  color: #af1130;
+  font-size: 18px;
+}
+.error:focus {
+  border: 3px solid #af1130;
+}
+.newTokens {
+  font-size: 20px;
+  color: #fff;
+}
+.tokensValue {
+  font-weight: 600;
 }
 @media (max-width: 600px) {
   .inputs {

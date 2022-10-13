@@ -10,9 +10,9 @@ const Footer = () => {
             target: '_blank'
           }}
           className='d-flex align-items-center'
-          href='https://elrond.com/'
+          href='https://estar.games'
         >
-          Made with <HeartIcon className='mx-1' /> by Elrond Network.
+          Made with <HeartIcon className='mx-1' /> by Estar Games.
         </a>
       </div>
     </footer>

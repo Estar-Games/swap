@@ -11,6 +11,7 @@ import styles from './styles.module.scss';
 function Sell() {
   const [tokenForSwap, setTokenForSwap] = useState(0);
   const { address } = useGetAccountInfo();
+  const [showError, setShowError] = useState(false);
 
   const oldTokens = useQuery(['balance'], () =>
     fetch(`http://localhost:1212/user/balance/${address}/ESTAR-ba1a38/2`).then(
@@ -43,7 +44,18 @@ function Sell() {
     }
     return a;
   }
-
+  function handleChangeValue(e: any) {
+    console.log(Number(e.target.value) <= supply.data.data);
+    if (
+      Number(e.target.value) > 0 &&
+      Number(e.target.value) <= supply.data.data
+    ) {
+      setTokenForSwap(Number(e.target.value));
+      setShowError(false);
+    } else {
+      setShowError(true);
+    }
+  }
   const sendTransaction = async () => {
     await sendTransactions({
       transactions: [
@@ -73,19 +85,34 @@ function Sell() {
 
       <Container className={styles.inputs}>
         <Form>
-          <Form.Group className='mb-3'>
+          {oldTokens.data.data === 0 ? (
+            <span className={styles.textError}>You don&apos;t have $ESTAR</span>
+          ) : null}
+          <Form.Group>
             <Form.Label className={styles.label}>Send:</Form.Label>
             <Form.Control
-              placeholder='Moneda1'
+              min='1'
+              placeholder='Enter amount'
               type='number'
-              onChange={(e) => setTokenForSwap(Number(e.target.value))}
+              onChange={(e) => handleChangeValue(e)}
+              className={showError === true ? styles.error : ''}
+              disabled={oldTokens.data.data === 0 ? true : false}
             />
-            <Form.Label className={styles.label}>
-              {oldTokens.data.status === 'SUCCESS' ? oldTokens.data.data : 0}{' '}
-              your $ESTAR
+            <Form.Label
+              className={
+                oldTokens.data.data > 0 ? styles.value : styles.textError
+              }
+            >
+              {oldTokens.data.status === 'SUCCESS' ? oldTokens.data.data : 0}
+              <span className={styles.labelText}> your $ESTAR</span>
             </Form.Label>
           </Form.Group>
-          <Form.Group className='mb-3'>
+          {showError === true ? (
+            <span className={styles.textError}>
+              Please check the values you passed in!
+            </span>
+          ) : null}
+          <Form.Group className='mb-1'>
             <Form.Label className={styles.label}>Receive:</Form.Label>
             <Form.Control
               placeholder='Moneda2'
@@ -93,18 +120,41 @@ function Sell() {
               type='number'
               disabled
             />
-            <Form.Label className={styles.label}>
-              {supply.data.data} available for swap
+            <Form.Label
+              className={
+                oldTokens.data.data > 0 ? styles.value : styles.textError
+              }
+            >
+              {supply.data.data}
+              <span className={styles.labelText}> available for swap</span>
             </Form.Label>
           </Form.Group>
           <Button
-            className={styles.buttonSell}
+            className={showError === false ? styles.buttonSell : ''}
             onClick={() => sendTransaction()}
+            disabled={
+              showError || oldTokens.data.data === 0 || tokenForSwap === 0
+                ? true
+                : false
+            }
           >
             Swap
           </Button>
+          <Button
+            className={showError === false ? styles.buttonSell : ''}
+            onClick={() => setTokenForSwap(oldTokens.data.data)}
+            disabled={
+              showError || (oldTokens.data.data === 0) === true ? true : false
+            }
+            style={{ marginLeft: '15px' }}
+          >
+            Add all
+          </Button>
         </Form>
-        <h2 className='text-light'>{newToken.data.data} New tokens</h2>
+        <h2 className={styles.newTokens} style={{ marginTop: '20px' }}>
+          OWNED NEW $ESTAR:{' '}
+          <span className={styles.tokensValue}>{newToken.data.data}</span>
+        </h2>
       </Container>
     </>
   );
