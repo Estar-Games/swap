@@ -14,7 +14,7 @@ import { routeNames } from 'routes';
 import routes from 'routes';
 import UnlockPage from './pages/UnlockPage';
 
-const environment = 'testnet';
+const environment = 'mainnet';
 
 const App = () => {
   const queryClient = new QueryClient();

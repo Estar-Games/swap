@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import BigNumber from 'bignumber.js';
 import { Button, Container } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import { contractAddress, token } from 'config';
+import { contractAddress, newTokenIdentifier, token } from 'config';
 import styles from './styles.module.scss';
 
 function Sell() {
@@ -14,15 +14,15 @@ function Sell() {
   const [showError, setShowError] = useState(false);
 
   const oldTokens = useQuery(['balance'], () =>
-    fetch(`http://localhost:1212/user/balance/${address}/ESTAR-ba1a38/2`).then(
+    fetch(`http://localhost:1212/user/balance/${address}/${token}/2`).then(
       (res) => res.json()
     )
   );
 
   const newToken = useQuery(['newToken'], () =>
-    fetch(`http://localhost:1212/user/balance/${address}/EST-93707f/18`).then(
-      (res) => res.json()
-    )
+    fetch(
+      `http://localhost:1212/user/balance/${address}/${newTokenIdentifier}/18`
+    ).then((res) => res.json())
   );
   const supply = useQuery(['supply'], () =>
     fetch('http://localhost:1212/swap/supply').then((res) => res.json())
@@ -125,7 +125,7 @@ function Sell() {
                 oldTokens.data.data > 0 ? styles.value : styles.textError
               }
             >
-              {supply.data.data}
+              {supply.data.data ? supply.data.data : 0}
               <span className={styles.labelText}> available for swap</span>
             </Form.Label>
           </Form.Group>
