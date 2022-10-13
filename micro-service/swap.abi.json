@@ -1,0 +1,104 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.64.0-nightly",
+            "commitHash": "f8588549c3c3d45c32b404210cada01e2a45def3",
+            "commitDate": "2022-07-18",
+            "channel": "Nightly",
+            "short": "rustc 1.64.0-nightly (f8588549c 2022-07-18)"
+        },
+        "contractCrate": {
+            "name": "swap",
+            "version": "0.0.0"
+        },
+        "framework": {
+            "name": "elrond-wasm",
+            "version": "0.35.0"
+        }
+    },
+    "name": "SwapContract",
+    "constructor": {
+        "inputs": [
+            {
+                "name": "token_for_swap",
+                "type": "TokenIdentifier"
+            },
+            {
+                "name": "token_swapped",
+                "type": "TokenIdentifier"
+            }
+        ],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "FundContract",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "Pause",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "SwapToken",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "GetIsPaused",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "GetSupply",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "BigUint"
+                }
+            ]
+        },
+        {
+            "name": "TokenForSwap",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "TokenIdentifier"
+                }
+            ]
+        },
+        {
+            "name": "TokenSwapped",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "TokenIdentifier"
+                }
+            ]
+        }
+    ],
+    "events": [],
+    "hasCallback": false,
+    "types": {}
+}

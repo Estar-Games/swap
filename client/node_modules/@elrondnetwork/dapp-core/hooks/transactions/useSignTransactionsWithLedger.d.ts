@@ -1,0 +1,4 @@
+import { UseSignTransactionsWithDevicePropsType, UseSignTransactionsWithDeviceReturnType } from './useSignTransactionsWithDevice';
+export declare function useSignTransactionsWithLedger(props: UseSignTransactionsWithDevicePropsType): UseSignTransactionsWithDeviceReturnType;
+export default useSignTransactionsWithLedger;
+//# sourceMappingURL=useSignTransactionsWithLedger.d.ts.map
