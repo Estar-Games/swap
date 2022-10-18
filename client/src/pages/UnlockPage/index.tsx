@@ -13,7 +13,7 @@ export const UnlockRoute: () => JSX.Element = () => {
 
   React.useEffect(() => {
     if (isLoggedIn) {
-      window.location.href = routeNames.swap;
+      window.location.href = routeNames.sale;
     }
   }, [isLoggedIn]);
 
@@ -26,20 +26,20 @@ export const UnlockRoute: () => JSX.Element = () => {
             <p className='mb-4'>pick a login method</p>
 
             <ExtensionLoginButton
-              callbackRoute={routeNames.swap}
+              callbackRoute={routeNames.sale}
               loginButtonText={'Extension'}
             />
             <WebWalletLoginButton
-              callbackRoute={routeNames.swap}
+              callbackRoute={routeNames.sale}
               loginButtonText={'Web wallet'}
             />
             <LedgerLoginButton
               loginButtonText={'Ledger'}
-              callbackRoute={routeNames.swap}
+              callbackRoute={routeNames.sale}
               className={'test-class_name'}
             />
             <WalletConnectLoginButton
-              callbackRoute={routeNames.swap}
+              callbackRoute={routeNames.sale}
               loginButtonText={'Maiar'}
             />
           </div>

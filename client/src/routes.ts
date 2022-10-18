@@ -1,9 +1,9 @@
 import { dAppName } from 'config';
-import Swap from 'pages/Swap';
+import Sale from 'pages/Sale';
 import withPageTitle from './components/PageTitle';
 
 export const routeNames = {
-  swap: '/',
+  sale: '/',
   unlock: '/unlock',
   ledger: '/ledger',
   walletconnect: '/walletconnect'
@@ -11,9 +11,9 @@ export const routeNames = {
 
 const routes: Array<any> = [
   {
-    path: routeNames.swap,
-    title: 'Swap',
-    component: Swap,
+    path: routeNames.sale,
+    title: 'Sale',
+    component: Sale,
     authenticatedRoute: true
   }
 ];

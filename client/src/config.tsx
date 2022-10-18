@@ -1,7 +1,5 @@
 export const contractAddress =
-  'erd1qqqqqqqqqqqqqpgqrrccfuyx3hmdpyg330cnf8r93qc8g67zwmfs7l8qsq';
-export const token = 'ESTAR-afaaf0';
-export const microservice = 'https://equistar.estar.games:1212';
-export const newTokenIdentifier = 'ESTAR-461bab';
+  'erd1qqqqqqqqqqqqqpgqh54p3kktqgnu5ljdp756cefm6hps7c87wmfsmkzs7d';
+export const microservice = 'https://equistar.estar.games:1213';
 
 export const dAppName = 'Estar Games';

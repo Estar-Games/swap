@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className='container-fluid'>
         <Link
           className='d-flex align-items-center navbar-brand mr-0'
-          to={isLoggedIn ? routeNames.swap : routeNames.swap}
+          to={isLoggedIn ? routeNames.sale : routeNames.sale}
         >
           <Logo />
         </Link>
