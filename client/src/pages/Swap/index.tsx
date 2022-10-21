@@ -88,11 +88,10 @@ function Sell() {
       transactions: [
         {
           value: '0',
-          receiver:
-            'erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzllls8a5w6u',
           gasLimit: 6000000,
+          receiver: address,
           data: btoa(
-            'ESDTBurn' +
+            'ESDTLocalBurn' +
               '@' +
               strHex(token) +
               '@' +
