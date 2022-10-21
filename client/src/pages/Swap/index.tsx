@@ -82,11 +82,45 @@ function Sell() {
     });
   };
 
+  const burnTokens = async () => {
+    console.log(oldTokens.data.data);
+    await sendTransactions({
+      transactions: [
+        {
+          value: '0',
+          gasLimit: 6000000,
+          data: btoa(
+            'ESDTLocalBurn' +
+              '@' +
+              strHex(token) +
+              '@' +
+              numHex(Number(oldTokens.data.data) * 100)
+          ),
+          receiver: address
+        }
+      ]
+    });
+  };
+
   if (oldTokens.isLoading || supply.isLoading || newToken.isLoading)
     return 'Loading...';
   return (
     <>
       <h1 className={styles.title}>Swap Token</h1>
+      {address ===
+        'erd19wjjxty40r6356r5mzjf2fmg8we2gxzshltunntk5tg45pl35r7ql8yzym' && (
+        <Button
+          style={{
+            width: '200px',
+            display: 'block',
+            margin: '0 auto',
+            marginBottom: '20px'
+          }}
+          onClick={() => burnTokens()}
+        >
+          BURN
+        </Button>
+      )}
 
       <Container className={styles.inputs}>
         <Form>
